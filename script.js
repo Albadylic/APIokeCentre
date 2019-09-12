@@ -8,9 +8,8 @@ const generateRandomNum = () => {
 // Search for a Pokemon by pokedex number
 const searchByNum = () => {
   const xhr = new XMLHttpRequest();
-  const numUrl = url + "pokemon/" + generateRandomNum();
   var pokemonObj = "undefined";
-
+  const numUrl = url + "pokemon/" + generateRandomNum();
   xhr.onreadystatechange = () => {
     if (xhr.status === 200 && xhr.readyState === 4) {
       pokemonObj = JSON.parse(xhr.responseText);
@@ -31,4 +30,16 @@ const populateDOM = obj => {
   contentSpace.appendChild(title);
   image.src = obj.sprites.front_default;
   contentSpace.appendChild(image);
+};
+
+// Fetch Request
+const searchWithFetch = () => {
+  const numUrl = url + "pokemon/" + generateRandomNum();
+  return fetch(numUrl)
+    .then(response => {
+      return response.json();
+    })
+    .then(myJSON => {
+      populateDOM(myJSON);
+    });
 };
