@@ -23,7 +23,11 @@ const searchByNum = () => {
 // Populate the DOM
 
 const populateDOM = obj => {
+  // Reset contentSpace
   const contentSpace = document.getElementById("content");
+  contentSpace.textContent = "";
+
+  // Add Pokemon name and sprite
   const title = document.createElement("h3");
   const image = document.createElement("img");
   title.textContent = obj.name;
@@ -43,3 +47,8 @@ const searchWithFetch = () => {
       populateDOM(myJSON);
     });
 };
+
+// Event listen on button
+document.getElementById("goButton").addEventListener("click", () => {
+  searchWithFetch();
+});
