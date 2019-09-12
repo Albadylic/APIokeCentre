@@ -26,6 +26,9 @@ const searchByNum = () => {
 const populateDOM = obj => {
   const contentSpace = document.getElementById("content");
   const title = document.createElement("h3");
+  const image = document.createElement("img");
   title.textContent = obj.name;
   contentSpace.appendChild(title);
+  image.src = obj.sprites.front_default;
+  contentSpace.appendChild(image);
 };
