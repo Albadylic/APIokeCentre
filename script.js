@@ -6,7 +6,6 @@ const generateRandomNum = () => {
 };
 
 // Search for a Pokemon by pokedex number
-
 const searchByNum = () => {
   const xhr = new XMLHttpRequest();
   const numUrl = url + "pokemon/" + generateRandomNum();
@@ -15,8 +14,18 @@ const searchByNum = () => {
   xhr.onreadystatechange = () => {
     if (xhr.status === 200 && xhr.readyState === 4) {
       pokemonObj = JSON.parse(xhr.responseText);
+      populateDOM(pokemonObj);
     }
   };
   xhr.open("GET", numUrl);
   xhr.send();
+};
+
+// Populate the DOM
+
+const populateDOM = obj => {
+  const contentSpace = document.getElementById("content");
+  const title = document.createElement("h3");
+  title.textContent = obj.name;
+  contentSpace.appendChild(title);
 };
