@@ -38,16 +38,24 @@ const populateDOM = obj => {
   contentSpace.appendChild(image);
 };
 
-const populateMoves = obj => {
+const populateMoves = str => {
   const contentSpace = document.getElementById("pokeMoves");
-  contentSpace.textContent = "";
-  const title = document.createElement("h2");
-  title.textContent = "Moves: ";
-  contentSpace.appendChild(title);
+  //   contentSpace.textContent = "";
+  //   const title = document.createElement("h2");
+  //   title.textContent = "Moves: ";
+  //   contentSpace.appendChild(title);
 
   const moveTitle = document.createElement("h3");
-  moveTitle.textContent = obj.moves[0].move.name;
+  moveTitle.textContent = str;
   contentSpace.appendChild(moveTitle);
+};
+
+const populateMoveData = obj => {
+  const contentSpace = document.getElementById("pokeMoves");
+  const power = document.createElement("p");
+  console.log(obj.power);
+  power.textContent = obj.power;
+  contentSpace.appendChild(power);
 };
 
 // Fetch Request
@@ -62,7 +70,20 @@ const searchWithFetch = () => {
       return myJSON;
     })
     .then(myJSON => {
-      populateMoves(myJSON);
+      for (i = 0; i < 3; i++) {
+        populateMoves(myJSON.moves[i].move.name);
+        getMoves(myJSON.moves[i].move.url);
+      }
+    });
+};
+
+const getMoves = url => {
+  return fetch(url)
+    .then(response => {
+      return response.json();
+    })
+    .then(myJSON => {
+      populateMoveData(myJSON);
     });
 };
 
