@@ -10,18 +10,23 @@ const clearContent = element => {
   element.textContent = "";
 };
 
+// Generate random Pokemon URL
+
+const generateRandomURL = () => {
+  return url + "pokemon/" + generateRandomNum();
+};
+
 // Search for a Pokemon by pokedex number
 const searchByNum = () => {
   const xhr = new XMLHttpRequest();
   var pokemonObj = "undefined";
-  const numUrl = url + "pokemon/" + generateRandomNum();
   xhr.onreadystatechange = () => {
     if (xhr.status === 200 && xhr.readyState === 4) {
       pokemonObj = JSON.parse(xhr.responseText);
       populateDOM(pokemonObj);
     }
   };
-  xhr.open("GET", numUrl);
+  xhr.open("GET", generateRandomURL());
   xhr.send();
 };
 
@@ -65,8 +70,7 @@ const populateMoveData = obj => {
 
 // Fetch Request
 const searchWithFetch = () => {
-  const numUrl = url + "pokemon/" + generateRandomNum();
-  return fetch(numUrl)
+  return fetch(generateRandomURL())
     .then(response => {
       return response.json();
     })
@@ -82,8 +86,8 @@ const searchWithFetch = () => {
     });
 };
 
-const getMoves = url => {
-  return fetch(url)
+const getMoves = movesUrl => {
+  return fetch(movesUrl)
     .then(response => {
       return response.json();
     })
