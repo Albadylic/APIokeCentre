@@ -5,6 +5,11 @@ const generateRandomNum = () => {
   return Math.floor(Math.random() * 151);
 };
 
+// Clear a DOM element's text content
+const clearContent = element => {
+  element.textContent = "";
+};
+
 // Search for a Pokemon by pokedex number
 const searchByNum = () => {
   const xhr = new XMLHttpRequest();
@@ -25,7 +30,7 @@ const searchByNum = () => {
 const populateDOM = obj => {
   // Reset contentSpace
   const contentSpace = document.getElementById("pokeContent");
-  contentSpace.textContent = "";
+  clearContent(contentSpace);
 
   // Add Pokemon name and sprite
   const title = document.createElement("h3");
