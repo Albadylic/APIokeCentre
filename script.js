@@ -23,7 +23,7 @@ const searchByNum = () => {
   xhr.onreadystatechange = () => {
     if (xhr.status === 200 && xhr.readyState === 4) {
       pokemonObj = JSON.parse(xhr.responseText);
-      populateDOM(pokemonObj);
+      populatePokemon(pokemonObj);
     }
   };
   xhr.open("GET", generateRandomURL());
@@ -32,7 +32,7 @@ const searchByNum = () => {
 
 // Populate the DOM
 
-const populateDOM = obj => {
+const populatePokemon = obj => {
   // Reset contentSpace
   const contentSpace = document.getElementById("pokeContent");
   clearContent(contentSpace);
@@ -75,7 +75,7 @@ const searchWithFetch = () => {
       return response.json();
     })
     .then(myJSON => {
-      populateDOM(myJSON);
+      populatePokemon(myJSON);
       return myJSON;
     })
     .then(myJSON => {
