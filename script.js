@@ -16,20 +16,6 @@ const generateRandomURL = () => {
   return url + "pokemon/" + generateRandomNum();
 };
 
-// Search for a Pokemon by pokedex number
-const searchByNum = () => {
-  const xhr = new XMLHttpRequest();
-  var pokemonObj = "undefined";
-  xhr.onreadystatechange = () => {
-    if (xhr.status === 200 && xhr.readyState === 4) {
-      pokemonObj = JSON.parse(xhr.responseText);
-      populatePokemon(pokemonObj);
-    }
-  };
-  xhr.open("GET", generateRandomURL());
-  xhr.send();
-};
-
 // Populate the DOM
 
 const populatePokemon = obj => {
@@ -48,22 +34,13 @@ const populatePokemon = obj => {
   contentSpace.appendChild(image);
 };
 
-const populateMoves = str => {
-  const contentSpace = document.getElementById("pokeMoves");
-  //   contentSpace.textContent = "";
-  //   const title = document.createElement("h2");
-  //   title.textContent = "Moves: ";
-  //   contentSpace.appendChild(title);
-
-  const moveTitle = document.createElement("h3");
-  moveTitle.textContent = str;
-  contentSpace.appendChild(moveTitle);
-};
-
 const populateMoveData = obj => {
   const contentSpace = document.getElementById("pokeMoves");
   const power = document.createElement("p");
-  console.log(obj.power);
+  console.log(obj.name, obj.power);
+  const moveTitle = document.createElement("h3");
+  moveTitle.textContent = obj.name;
+  contentSpace.appendChild(moveTitle);
   power.textContent = obj.power;
   contentSpace.appendChild(power);
 };
@@ -80,7 +57,7 @@ const searchWithFetch = () => {
     })
     .then(myJSON => {
       for (i = 0; i < 3; i++) {
-        populateMoves(myJSON.moves[i].move.name);
+        // populateMoves(myJSON.moves[i].move.name);
         getMoves(myJSON.moves[i].move.url);
       }
     });
