@@ -25,21 +25,20 @@ const populatePokemon = obj => {
   title.textContent = obj.name;
   image.src = obj.sprites.front_default;
 };
-
+let count = 0;
 const populateMoveData = obj => {
   const moveTitle = document.querySelectorAll(".pokeMoveTitle");
   const power = document.querySelectorAll(".pokeMovePower");
-  console.log(obj.name, obj.power);
-  console.log(pokeArray.length);
 
-  for (i = 0; i < pokeArray.length; i++) {
-    moveTitle[i].textContent = pokeArray[i].name;
-    if (pokeArray[i].power != null) {
-      power[i].textContent = pokeArray[i].power;
+  for (i = 0; i < 4; i++) {
+    moveTitle[count].textContent = obj.name;
+    if (obj.power != null) {
+      power[count].textContent = obj.power;
     } else {
-      power[i].textContent = "N/A";
+      power[count].textContent = "N/A";
     }
   }
+  count++;
 };
 
 // Fetch Request
@@ -53,8 +52,8 @@ const searchWithFetch = () => {
       return myJSON;
     })
     .then(myJSON => {
+      count = 0;
       for (i = 0; i < 4; i++) {
-        pokeArray = [];
         getMoves(myJSON.moves[i].move.url);
       }
     });
@@ -66,15 +65,8 @@ const getMoves = movesUrl => {
       return response.json();
     })
     .then(myJSON => {
-      populateArray(myJSON);
       populateMoveData(myJSON);
     });
-};
-
-let pokeArray = [];
-
-const populateArray = obj => {
-  return pokeArray.push({ name: obj.name, power: obj.power });
 };
 
 // Event listen on button
