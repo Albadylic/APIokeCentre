@@ -2,3 +2,27 @@
   display: flex;
   justify-content: space-around;
 }
+
+#pokeContent {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#pokeMoves {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  text-align: center;
+  border: black solid 2px;
+}
+
+#pokeMoveOne,
+#pokeMoveTwo,
+#pokeMoveThree,
+#pokeMoveFour {
+  width: 40vw;
+  border: red dashed 0.2rem;
+  padding: 1rem;
+}
