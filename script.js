@@ -25,19 +25,19 @@ const populatePokemon = obj => {
   title.textContent = obj.name;
   image.src = obj.sprites.front_default;
 };
+
 let count = 0;
 const populateMoveData = obj => {
   const moveTitle = document.querySelectorAll(".pokeMoveTitle");
   const power = document.querySelectorAll(".pokeMovePower");
 
-  for (i = 0; i < 4; i++) {
-    moveTitle[count].textContent = obj.name;
-    if (obj.power != null) {
-      power[count].textContent = obj.power;
-    } else {
-      power[count].textContent = "N/A";
-    }
+  moveTitle[count].textContent = obj.name;
+  if (obj.power != null) {
+    power[count].textContent = obj.power;
+  } else {
+    power[count].textContent = "N/A";
   }
+
   count++;
 };
 
