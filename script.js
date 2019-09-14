@@ -19,35 +19,27 @@ const generateRandomURL = () => {
 // Populate the DOM
 
 const populatePokemon = obj => {
-  // Reset contentSpace
-  const contentSpace = document.getElementById("pokeContent");
-  clearContent(contentSpace);
-
   // Add Pokemon name and sprite
-  const title = document.createElement("h3");
-  const image = document.createElement("img");
+  const title = document.querySelector("#pokemonName");
+  const image = document.querySelector("#pokemonSprite");
   title.textContent = obj.name;
-  title.classList.add("pokemonName");
-  contentSpace.appendChild(title);
   image.src = obj.sprites.front_default;
-  image.classList.add("pokemonSprite");
-  contentSpace.appendChild(image);
 };
 
 const populateMoveData = obj => {
-  const contentSpace = document.getElementById("pokeMoves");
-  const power = document.createElement("p");
+  const moveTitle = document.querySelectorAll(".pokeMoveTitle");
+  const power = document.querySelectorAll(".pokeMovePower");
   console.log(obj.name, obj.power);
-  const moveTitle = document.createElement("h3");
-  moveTitle.textContent = obj.name;
-  contentSpace.appendChild(moveTitle);
-  if (obj.power != null) {
-    power.textContent = obj.power;
-  } else {
-    power.textContent = "N/A";
-  }
+  console.log(pokeArray.length);
 
-  contentSpace.appendChild(power);
+  for (i = 0; i < pokeArray.length; i++) {
+    moveTitle[i].textContent = pokeArray[i].name;
+    if (pokeArray[i].power != null) {
+      power[i].textContent = pokeArray[i].power;
+    } else {
+      power[i].textContent = "N/A";
+    }
+  }
 };
 
 // Fetch Request
@@ -62,6 +54,7 @@ const searchWithFetch = () => {
     })
     .then(myJSON => {
       for (i = 0; i < 4; i++) {
+        pokeArray = [];
         getMoves(myJSON.moves[i].move.url);
       }
     });
@@ -73,8 +66,15 @@ const getMoves = movesUrl => {
       return response.json();
     })
     .then(myJSON => {
+      populateArray(myJSON);
       populateMoveData(myJSON);
     });
+};
+
+let pokeArray = [];
+
+const populateArray = obj => {
+  return pokeArray.push({ name: obj.name, power: obj.power });
 };
 
 // Event listen on button
