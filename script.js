@@ -41,7 +41,12 @@ const populateMoveData = obj => {
   const moveTitle = document.createElement("h3");
   moveTitle.textContent = obj.name;
   contentSpace.appendChild(moveTitle);
-  power.textContent = obj.power;
+  if (obj.power != null) {
+    power.textContent = obj.power;
+  } else {
+    power.textContent = "N/A";
+  }
+
   contentSpace.appendChild(power);
 };
 
@@ -56,8 +61,7 @@ const searchWithFetch = () => {
       return myJSON;
     })
     .then(myJSON => {
-      for (i = 0; i < 3; i++) {
-        // populateMoves(myJSON.moves[i].move.name);
+      for (i = 0; i < 4; i++) {
         getMoves(myJSON.moves[i].move.url);
       }
     });
