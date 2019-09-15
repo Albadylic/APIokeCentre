@@ -19,7 +19,7 @@ const generateRandomURL = () => {
 // Capitalise Strings
 
 const capitaliseString = str => {
-  let arr = str.split(" ");
+  let arr = str.split("-");
   arr.forEach((element, index) => {
     arr[index] = element.substring(0, 1).toUpperCase() + element.substring(1);
   });
@@ -32,7 +32,7 @@ const populatePokemon = obj => {
   // Add Pokemon name and sprite
   const title = document.querySelector("#pokemonName");
   const image = document.querySelector("#pokemonSprite");
-  title.textContent = obj.name;
+  title.textContent = capitaliseString(obj.name);
   image.src = obj.sprites.front_default;
 };
 
@@ -41,7 +41,7 @@ const populateMoveData = obj => {
   const moveTitle = document.querySelectorAll(".pokeMoveTitle");
   const power = document.querySelectorAll(".pokeMovePower");
 
-  moveTitle[count].textContent = obj.name;
+  moveTitle[count].textContent = capitaliseString(obj.name);
   if (obj.power != null) {
     power[count].textContent = obj.power;
   } else {
