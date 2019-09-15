@@ -16,6 +16,16 @@ const generateRandomURL = () => {
   return url + "pokemon/" + generateRandomNum();
 };
 
+// Capitalise Strings
+
+const capitaliseString = str => {
+  let arr = str.split(" ");
+  arr.forEach((element, index) => {
+    arr[index] = element.substring(0, 1).toUpperCase() + element.substring(1);
+  });
+  return arr.join(" ");
+};
+
 // Populate the DOM
 
 const populatePokemon = obj => {
