@@ -1,6 +1,46 @@
+html {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+p,
+a,
+button {
+  font-family: "Manjari", sans-serif;
+}
+
+h1,
+button {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1rem;
+}
+
 #header {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  background-color: maroon;
+  margin: 0;
+  width: 100%;
+
+  color: white;
+}
+
+#header__text {
+  padding: 0.5vw;
+}
+
+#goButton {
+  width: 15vw;
+  border: black solid 0.2rem;
+  border-radius: 5%;
+  cursor: pointer;
+  background: linear-gradient(pink, red, maroon);
+  margin: 0.5em;
 }
 
 #pokeContent {
@@ -10,19 +50,27 @@
   align-items: center;
 }
 
+#pokemonSprite {
+  border: solid black 0.1rem;
+  border-radius: 10%;
+  margin: 0.5rem;
+  padding: 1em;
+}
+
 #pokeMoves {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
   text-align: center;
-  border: black solid 2px;
 }
 
 #pokeMoveOne,
 #pokeMoveTwo,
 #pokeMoveThree,
 #pokeMoveFour {
-  width: 40vw;
-  border: red dashed 0.2rem;
+  width: 30vw;
+  border: maroon double 0.5rem;
   padding: 1rem;
+  background: linear-gradient(to bottom right, red, pink);
+  margin: 0.2rem;
 }
