@@ -53,13 +53,19 @@ const populateMoveData = obj => {
 
 // Fetch Request
 const getPokemon = () => {
-  fetch(generateRandomURL()).then(response => {
-    // Note here, you must remove the console.log() in order to return the json.
-    return response.json();
-  });
-  // In a new .then(), we'd like to populate the DOM with the data from the API call
-  // Handily, there is already a function for populating the DOM. See line 31.
-  // Pass your data to the populatePokemon function.
+  fetch(generateRandomURL())
+    .then(response => {
+      return response.json();
+    })
+    .then(myJSON => {
+      populatePokemon(myJSON);
+      return myJSON;
+    });
+  // Now, we've populated the DOM with a Pokemon, we'd like to populate that Pokemon's moves.
+  // Our API gives an object with the key moves. The value of this is an array of objects.
+  // First, try console logging the first move in this array.
+  // Note that we get back a move, it's name and a new URL...
+  // Now, move on to the next step.
 };
 
 const getMoves = movesUrl => {};
