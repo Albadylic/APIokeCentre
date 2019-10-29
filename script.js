@@ -62,17 +62,24 @@ const getPokemon = () => {
       return myJSON;
     })
     .then(myJSON => {
-      console.log(myJSON.moves[0].move);
-      // So far, we have logged the object contained in a particular move.
-      // Now, we'd like to use this URL to make a second API call.
-      // Within this .then(), call the GetMoves function with this move's url.
+      // Now we are able to populate the DOM using the Pokemon's moves.
+      // Congratulations! You are well on your way to becoming a Pokemon master!
+      // Now, we'd like to repeat this functionality for the first four moves.
+      // Write a function here that shall call the getMoves function for the first four moves.
+      // Hint: notice the count variable, when should this be reset?
+
+      getMoves(myJSON.moves[0].move.url);
     });
 };
 
 const getMoves = movesUrl => {
-  // When this function is called, we'd like to make a new fetch request using the move's url.
-  // Once you're able to console log the response of the second fetch, populate the DOM using
-  // the populateMoveData function.
+  fetch(movesUrl)
+    .then(response => {
+      return response.json();
+    })
+    .then(myJSON => {
+      populateMoveData(myJSON);
+    });
 };
 
 // Event listen on button
