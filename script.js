@@ -1,19 +1,15 @@
-const url = "https://pokeapi.co/api/v2/";
+// Some Helper Functions
 
 // Generate a random number between 0 and 150
 const generateRandomNum = () => {
   return Math.floor(Math.random() * 151);
 };
 
-// Clear a DOM element's text content
-const clearContent = element => {
-  element.textContent = "";
-};
-
 // Generate random Pokemon URL
 
+const url = "https://pokeapi.co/api/v2/pokemon/";
 const generateRandomURL = () => {
-  return url + "pokemon/" + generateRandomNum();
+  return url + generateRandomNum();
 };
 
 // Capitalise Strings
@@ -27,6 +23,8 @@ const capitaliseString = str => {
 };
 
 // Populate the DOM
+// These functions will use the object returned from the fetch request
+// They should be called within your .then statements
 
 const populatePokemon = obj => {
   // Add Pokemon name and sprite
@@ -52,8 +50,8 @@ const populateMoveData = obj => {
 };
 
 // Fetch Request
-const searchWithFetch = () => {
-  return fetch(generateRandomURL())
+const getPokemon = () => {
+  fetch(generateRandomURL())
     .then(response => {
       return response.json();
     })
@@ -70,7 +68,7 @@ const searchWithFetch = () => {
 };
 
 const getMoves = movesUrl => {
-  return fetch(movesUrl)
+  fetch(movesUrl)
     .then(response => {
       return response.json();
     })
@@ -81,5 +79,5 @@ const getMoves = movesUrl => {
 
 // Event listen on button
 document.getElementById("goButton").addEventListener("click", () => {
-  searchWithFetch();
+  getPokemon();
 });
