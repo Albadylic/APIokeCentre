@@ -54,9 +54,12 @@ const populateMoveData = obj => {
 // Fetch Request
 const getPokemon = () => {
   fetch(generateRandomURL()).then(response => {
+    // Note here, you must remove the console.log() in order to return the json.
     return response.json();
   });
-  // Pass your data to the populatePokemon function
+  // In a new .then(), we'd like to populate the DOM with the data from the API call
+  // Handily, there is already a function for populating the DOM. See line 31.
+  // Pass your data to the populatePokemon function.
 };
 
 const getMoves = movesUrl => {};
