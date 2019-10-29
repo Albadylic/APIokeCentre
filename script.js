@@ -53,31 +53,13 @@ const populateMoveData = obj => {
 
 // Fetch Request
 const getPokemon = () => {
-  fetch(generateRandomURL())
-    .then(response => {
-      return response.json();
-    })
-    .then(myJSON => {
-      populatePokemon(myJSON);
-      return myJSON;
-    })
-    .then(myJSON => {
-      count = 0;
-      for (i = 0; i < 4; i++) {
-        getMoves(myJSON.moves[i].move.url);
-      }
-    });
+  fetch(generateRandomURL()).then(response => {
+    return response.json();
+  });
+  // Pass your data to the populatePokemon function
 };
 
-const getMoves = movesUrl => {
-  fetch(movesUrl)
-    .then(response => {
-      return response.json();
-    })
-    .then(myJSON => {
-      populateMoveData(myJSON);
-    });
-};
+const getMoves = movesUrl => {};
 
 // Event listen on button
 document.getElementById("goButton").addEventListener("click", () => {
