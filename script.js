@@ -60,15 +60,20 @@ const getPokemon = () => {
     .then(myJSON => {
       populatePokemon(myJSON);
       return myJSON;
+    })
+    .then(myJSON => {
+      console.log(myJSON.moves[0].move);
+      // So far, we have logged the object contained in a particular move.
+      // Now, we'd like to use this URL to make a second API call.
+      // Within this .then(), call the GetMoves function with this move's url.
     });
-  // Now, we've populated the DOM with a Pokemon, we'd like to populate that Pokemon's moves.
-  // Our API gives an object with the key moves. The value of this is an array of objects.
-  // First, try console logging the first move in this array.
-  // Note that we get back a move, it's name and a new URL...
-  // Now, move on to the next step.
 };
 
-const getMoves = movesUrl => {};
+const getMoves = movesUrl => {
+  // When this function is called, we'd like to make a new fetch request using the move's url.
+  // Once you're able to console log the response of the second fetch, populate the DOM using
+  // the populateMoveData function.
+};
 
 // Event listen on button
 document.getElementById("goButton").addEventListener("click", () => {
