@@ -53,31 +53,17 @@ const populateMoveData = obj => {
 
 // Fetch Request
 const getPokemon = () => {
-  fetch(generateRandomURL())
-    .then(response => {
-      return response.json();
-    })
-    .then(myJSON => {
-      populatePokemon(myJSON);
-      return myJSON;
-    })
-    .then(myJSON => {
-      count = 0;
-      for (i = 0; i < 4; i++) {
-        getMoves(myJSON.moves[i].move.url);
-      }
-    });
+  fetch(generateRandomURL()).then(response => {
+    // Our response will come back as a promise.
+    // Console logging response will give us a difficult to read and decipher object
+    // We must use the .json() method on our response to make this readable. Log it here:
+    //
+    //
+    // Now you've logged the response, we'd like to pass this to our next .then() statement.
+  });
 };
 
-const getMoves = movesUrl => {
-  fetch(movesUrl)
-    .then(response => {
-      return response.json();
-    })
-    .then(myJSON => {
-      populateMoveData(myJSON);
-    });
-};
+const getMoves = movesUrl => {};
 
 // Event listen on button
 document.getElementById("goButton").addEventListener("click", () => {
