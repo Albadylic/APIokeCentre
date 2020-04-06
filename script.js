@@ -34,19 +34,19 @@ const populatePokemon = obj => {
   image.src = obj.sprites.front_default;
 };
 
-let count = 0;
+let moveCount = 0;
 const populateMoveData = obj => {
   const moveTitle = document.querySelectorAll(".pokeMoveTitle");
   const power = document.querySelectorAll(".pokeMovePower");
 
-  moveTitle[count].textContent = capitaliseString(obj.name);
+  moveTitle[moveCount].textContent = capitaliseString(obj.name);
   if (obj.power != null) {
-    power[count].textContent = obj.power;
+    power[moveCount].textContent = obj.power;
   } else {
-    power[count].textContent = "N/A";
+    power[moveCount].textContent = "N/A";
   }
 
-  count++;
+  moveCount++;
 };
 
 // Fetch Request
@@ -60,10 +60,12 @@ const getPokemon = () => {
       return myJSON;
     })
     .then(myJSON => {
-      count = 0;
-      for (i = 0; i < 4; i++) {
-        getMoves(myJSON.moves[i].move.url);
-      }
+      moveCount = 0;
+      Promise.all([getMoves(myJSON.moves[0].move.url), getMoves(myJSON.moves[1].move.url), getMoves(myJSON.moves[2].move.url), getMoves(myJSON.moves[3].move.url), ])
+
+      // for (i = 0; i < 4; i++) {
+      //   getMoves(myJSON.moves[i].move.url);
+      // }
     });
 };
 
